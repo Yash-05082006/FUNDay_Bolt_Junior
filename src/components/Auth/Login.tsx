@@ -10,7 +10,7 @@ const avatars = ['🐻', '🐱', '🐶', '🦊', '🐼', '🐨', '🦁', '🐸',
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: '',
     age: '',
     avatar: avatars[0]
@@ -26,7 +26,7 @@ const Login = () => {
       // Simple login - in a real app, this would validate against a backend
       const user = {
         id: Date.now().toString(),
-        email: formData.email,
+        username: formData.username,
         age: 12,
         avatar: avatars[Math.floor(Math.random() * avatars.length)],
         coins: 100,
@@ -34,7 +34,7 @@ const Login = () => {
         level: 'Beginner' as const,
         completedModules: [],
         badges: [],
-        isAdmin: formData.email.toLowerCase() === 'admin',
+        isAdmin: formData.username.toLowerCase() === 'admin',
         createdAt: new Date().toISOString()
       };
       
@@ -52,7 +52,7 @@ const Login = () => {
       // Sign up
       const user = {
         id: Date.now().toString(),
-        email: formData.email,
+        username: formData.username,
         age: parseInt(formData.age),
         avatar: formData.avatar,
         coins: 100,
@@ -111,17 +111,17 @@ const Login = () => {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Email */}
+          {/* Username */}
           <div>
             <label className="block text-sm font-comic text-gray-700 mb-2">
-              Enter your email:
+              Choose your username:
             </label>
             <input
-              type="email"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              type="text"
+              value={formData.username}
+              onChange={(e) => setFormData({ ...formData, username: e.target.value })}
               className="w-full px-4 py-3 border-2 border-gray-200 rounded-2xl focus:border-primary-500 focus:outline-none font-comic"
-              placeholder="Enter your email"
+              placeholder="Enter a cool username"
               required
             />
           </div>
