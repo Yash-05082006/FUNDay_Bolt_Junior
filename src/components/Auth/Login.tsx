@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Eye, EyeOff, Star } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import confetti from 'canvas-confetti';
 
@@ -10,7 +10,7 @@ const avatars = ['🐻', '🐱', '🐶', '🦊', '🐼', '🐨', '🦁', '🐸',
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
     age: '',
     avatar: avatars[0]
@@ -23,10 +23,10 @@ const Login = () => {
     e.preventDefault();
     
     if (isLogin) {
-      // Simple login - in a real app, this would validate against a backend
+      // Simple login - in a real app, this would validate against Supabase backend
       const user = {
         id: Date.now().toString(),
-        username: formData.username,
+        email: formData.email,
         age: 12,
         avatar: avatars[Math.floor(Math.random() * avatars.length)],
         coins: 100,
@@ -34,7 +34,7 @@ const Login = () => {
         level: 'Beginner' as const,
         completedModules: [],
         badges: [],
-        isAdmin: formData.username.toLowerCase() === 'admin',
+        isAdmin: formData.email.toLowerCase() === 'admin@funday.com',
         createdAt: new Date().toISOString()
       };
       
@@ -52,7 +52,7 @@ const Login = () => {
       // Sign up
       const user = {
         id: Date.now().toString(),
-        username: formData.username,
+        email: formData.email,
         age: parseInt(formData.age),
         avatar: formData.avatar,
         coins: 100,
@@ -111,17 +111,17 @@ const Login = () => {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Username */}
+          {/* Email */}
           <div>
             <label className="block text-sm font-comic text-gray-700 mb-2">
-              Choose your username:
+              Enter your email:
             </label>
             <input
-              type="text"
-              value={formData.username}
-              onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+              type="email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className="w-full px-4 py-3 border-2 border-gray-200 rounded-2xl focus:border-primary-500 focus:outline-none font-comic"
-              placeholder="Enter a cool username"
+              placeholder="Enter your email address"
               required
             />
           </div>
