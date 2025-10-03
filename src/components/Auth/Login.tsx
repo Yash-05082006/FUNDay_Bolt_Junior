@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, Star } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import confetti from 'canvas-confetti';
 
@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     
     if (isLogin) {
-      // Simple login - in a real app, this would validate against Supabase backend
+      // Simple login - in a real app, this would validate against a backend
       const user = {
         id: Date.now().toString(),
         email: formData.email,
@@ -34,7 +34,7 @@ const Login = () => {
         level: 'Beginner' as const,
         completedModules: [],
         badges: [],
-        isAdmin: formData.email.toLowerCase() === 'admin@funday.com',
+        isAdmin: formData.email.toLowerCase() === 'admin',
         createdAt: new Date().toISOString()
       };
       
@@ -121,7 +121,7 @@ const Login = () => {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className="w-full px-4 py-3 border-2 border-gray-200 rounded-2xl focus:border-primary-500 focus:outline-none font-comic"
-              placeholder="Enter your email address"
+              placeholder="Enter your email"
               required
             />
           </div>
